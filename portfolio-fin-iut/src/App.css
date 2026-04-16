@@ -370,6 +370,26 @@
   color: var(--text-h);
 }
 
+.tone-next .tech-pill__mark {
+  background: rgba(17, 17, 17, 0.1);
+  color: var(--text-h);
+}
+
+.tone-node .tech-pill__mark {
+  background: rgba(83, 180, 63, 0.18);
+  color: var(--text-h);
+}
+
+.tone-spring .tech-pill__mark {
+  background: rgba(109, 179, 63, 0.18);
+  color: var(--text-h);
+}
+
+.tone-csharp .tech-pill__mark {
+  background: rgba(104, 33, 122, 0.2);
+  color: var(--text-h);
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
