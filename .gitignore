@@ -1,0 +1,5 @@
+# Root gitignore for nested Vite project
+portfolio-fin-iut/node_modules/
+portfolio-fin-iut/dist/
+portfolio-fin-iut/dist-ssr/
+portfolio-fin-iut/*.log
