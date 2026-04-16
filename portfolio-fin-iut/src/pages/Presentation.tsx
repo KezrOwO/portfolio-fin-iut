@@ -1,31 +1,143 @@
+import { useEffect, useMemo, useState } from 'react'
+
+type SkillGroup = {
+    title: string
+    description: string
+    items: Array<{
+        label: string
+        level: string
+        value: number
+    }>
+}
+
+type TechBadge = {
+    label: string
+    tone: string
+    short: string
+}
+
+const skillGroups: SkillGroup[] = [
+    {
+        title: 'Développement',
+        description: 'Technos que j’utilise pour concevoir des applis web et des systèmes plus techniques.',
+        items: [
+            { label: 'Java', level: 'Solide', value: 88 },
+            { label: 'JavaScript / TypeScript', level: 'Solide', value: 84 },
+            { label: 'React', level: 'Avancé', value: 82 },
+            { label: 'SQL', level: 'Solide', value: 78 },
+        ],
+    },
+    {
+        title: 'Conception',
+        description: 'Ce qui m’aide à structurer des projets propres et maintenables.',
+        items: [
+            { label: 'UML / Modélisation', level: 'Bon niveau', value: 76 },
+            { label: 'Algorithmique', level: 'Bon niveau', value: 80 },
+            { label: 'Pathfinding', level: 'En progression', value: 72 },
+            { label: 'Git / GitHub', level: 'Solide', value: 86 },
+        ],
+    },
+    {
+        title: 'Environnement',
+        description: 'Outils et méthodes qui accompagnent mon travail au quotidien.',
+        items: [
+            { label: 'Vite', level: 'Solide', value: 80 },
+            { label: 'HTML / CSS', level: 'Solide', value: 86 },
+            { label: 'Tests / debug', level: 'Bon niveau', value: 74 },
+            { label: 'Travail en équipe', level: 'Confirmé', value: 90 },
+        ],
+    },
+]
+
+const featuredTechs: TechBadge[] = [
+    { label: 'Java', tone: 'tone-java', short: 'Jv' },
+    { label: 'JavaScript', tone: 'tone-js', short: 'JS' },
+    { label: 'TypeScript', tone: 'tone-ts', short: 'TS' },
+    { label: 'React', tone: 'tone-react', short: 'R' },
+    { label: 'SQL', tone: 'tone-sql', short: 'SQL' },
+    { label: 'HTML', tone: 'tone-html', short: 'HT' },
+    { label: 'CSS', tone: 'tone-css', short: 'CS' },
+    { label: 'Git', tone: 'tone-git', short: 'G' },
+]
+
 export function Presentation() {
+    const [reducedMotion, setReducedMotion] = useState(false)
+
+    useEffect(() => {
+        const mediaQuery = globalThis.matchMedia('(prefers-reduced-motion: reduce)')
+
+        const updatePreference = () => {
+            setReducedMotion(mediaQuery.matches)
+        }
+
+        updatePreference()
+        mediaQuery.addEventListener('change', updatePreference)
+
+        return () => {
+            mediaQuery.removeEventListener('change', updatePreference)
+        }
+    }, [])
+
+    const marqueeTechs = useMemo(() => {
+        return [...featuredTechs, ...featuredTechs]
+    }, [])
+
     return (
-        <section id="presentation">
-            <h1>À Propos de Moi</h1>
-            <p className="intro-text">
-                Je suis étudiant en troisième année de BUT Informatique à l’IUT de Lille, où je me forme à la conception, au développement et à la validation d’applications.
+        <section id="presentation" className="presentation-page">
+            <div className="presentation-hero">
+                <p className="eyebrow">À propos</p>
+                <h1>Des hard skills lisibles, pas un carrousel décoratif</h1>
+                <p className="intro-text">
+                    Je suis étudiant en troisième année de BUT Informatique à l’IUT de Lille, avec un intérêt fort
+                    pour le développement web, la conception de systèmes et le gameplay programming. Mon objectif
+                    est de montrer clairement ce que je sais faire, sans surcharger la page.
+                </p>
+            </div>
 
-                Je suis particulièrement intéressé par le développement web, mais aussi par le gameplay et les systèmes de jeu. J’aime comprendre comment un système fonctionne, le structurer, puis l’optimiser, que ce soit dans une application classique ou dans un projet orienté jeu vidéo.
+            <div className="skills-marquee" aria-label="Technologies principales">
+                <div className={`marquee-track ${reducedMotion ? 'is-static' : ''}`}>
+                    {marqueeTechs.map((tech, index) => (
+                        <div key={`${tech.label}-${index}`} className={`tech-pill ${tech.tone}`}>
+                            <span className="tech-pill__mark">{tech.short}</span>
+                            <span className="tech-pill__label">{tech.label}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-                Au fil de mon parcours, j’ai développé des compétences solides en Java, JavaScript, SQL ainsi qu’avec différents frameworks et outils. Les projets que j’ai réalisés m’ont permis de travailler sur des problématiques concrètes, mais surtout de développer une vraie manière de réfléchir et d’aborder un problème technique.
+            <div className="skills-grid">
+                {skillGroups.map((group) => (
+                    <article key={group.title} className="skill-card skill-card--expanded">
+                        <h2>{group.title}</h2>
+                        <p className="skill-card__description">{group.description}</p>
+                        <ul className="skill-meter-list">
+                            {group.items.map((item) => (
+                                <li key={item.label} className="skill-meter-item">
+                                    <div className="skill-meter-item__header">
+                                        <span>{item.label}</span>
+                                        <span>{item.level}</span>
+                                    </div>
+                                    <div className="skill-meter">
+                                        <span style={{ width: `${item.value}%` }} />
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </article>
+                ))}
+            </div>
 
-                Je m’intéresse également à des aspects plus algorithmiques, notamment autour du pathfinding, avec des approches comme A* ou Dijkstra, que j’ai eu l’occasion d’explorer dans certains projets.
-
-                Admis à Rubika pour poursuivre mes études dans le jeu vidéo, je souhaite continuer à développer mes compétences en gameplay programming et en conception de systèmes.
-
-                Je suis actuellement à la recherche d’un stage de 14 à 18 semaines à partir de mai 2026. N’hésitez pas à consulter mon CV ou à me contacter pour toute opportunité ou collaboration.
-            </p>
-            <div className="skills-container">
-                <div className="skill-card">
+            <div className="presentation-summary">
+                <div className="skill-card skill-card--summary">
                     <h2>Langues</h2>
                     <ul>
-                        <li>Français - Langue maternelle</li>
+                        <li>Français - langue maternelle</li>
                         <li>Anglais - niveau B2</li>
                         <li>Allemand - niveau A2</li>
                     </ul>
                 </div>
 
-                <div className="skill-card">
+                <div className="skill-card skill-card--summary">
                     <h2>Soft Skills</h2>
                     <ul>
                         <li>Travail en équipe</li>
@@ -35,11 +147,11 @@ export function Presentation() {
                     </ul>
                 </div>
 
-                <div className="skill-card">
+                <div className="skill-card skill-card--summary">
                     <h2>Passions</h2>
                     <ul>
                         <li>Informatique</li>
-                        <li>Jeux vidéos</li>
+                        <li>Jeux vidéo</li>
                         <li>Football</li>
                         <li>Musique</li>
                     </ul>
