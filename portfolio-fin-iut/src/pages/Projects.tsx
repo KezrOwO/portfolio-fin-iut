@@ -5,6 +5,7 @@ type Project = {
   context: string
   stack: string[]
   highlights: string[]
+  badge?: string
   link?: {
     href: string
     label: string
@@ -12,6 +13,28 @@ type Project = {
 }
 
 const projects: Project[] = [
+  {
+    title: 'SAE501 - Système de réservation en ligne',
+    badge: '3e année',
+    context: 'Projet de 3e année: application type Doctolib avec calendrier et gestion de rendez-vous.',
+    stack: ['Java', 'Spring Boot', 'Spring Security', 'JSP', 'H2', 'Maven'],
+    highlights: [
+      `Développement d'un calendrier interactif avec disponibilités, gestion des créneaux et réservations utilisateur.`,
+      `Mise en place de l'authentification et des rôles (utilisateur / administrateur) avec Spring Security.`,
+      `Conception d'une application configurable selon le type d'établissement (piscine, cabinet médical, etc.) et API REST associée.`,
+    ],
+  },
+  {
+    title: `Émulateur d'architecture RISC-V`,
+    badge: '3e année',
+    context: 'Projet de 3e année orienté architecture machine, décodage d instructions et exécution bas niveau.',
+    stack: ['C++', 'RISC-V', 'CLI', 'Debugger'],
+    highlights: [
+      `Implémentation d'un pipeline complet decode -> execute avec support de nombreuses instructions RISC-V.`,
+      'Gestion mémoire avec vérification des accès, MMIO simulé (stdin/stdout/stderr) et semihosting.',
+      `Ajout d'un mode pas à pas avec commandes de debug, désassemblage et détection de boucle infinie.`,
+    ],
+  },
   {
     title: 'Classification de données avec KNN',
     context: 'Projet académique orienté algorithmique et visualisation.',
@@ -87,6 +110,7 @@ export function Projects() {
       <div className="projects-grid">
         {projects.map((project) => (
           <article key={project.title} className="project-card">
+            {project.badge ? <p className="project-card__badge">{project.badge}</p> : null}
             <h2>{project.title}</h2>
             <p className="project-card__context">{project.context}</p>
 

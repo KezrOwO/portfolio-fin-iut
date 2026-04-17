@@ -608,13 +608,34 @@
 }
 
 .project-card {
+  position: relative;
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 24px;
+  padding: 64px 24px 24px;
   background: linear-gradient(165deg, rgba(11, 19, 40, 0.95), rgba(9, 14, 30, 0.9));
   box-shadow: 0 14px 30px rgba(1, 5, 20, 0.45);
   display: grid;
   gap: 14px;
+}
+
+.project-card__badge {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(77, 217, 255, 0.55);
+  background: linear-gradient(135deg, rgba(77, 217, 255, 0.2), rgba(255, 143, 112, 0.2));
+  color: var(--text-h);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .project-card h2 {
