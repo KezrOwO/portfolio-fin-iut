@@ -1,3 +1,5 @@
+import badUiVideo from '../assets/bad_ui.mkv'
+
 type Project = {
   title: string
   context: string
@@ -30,7 +32,7 @@ const projects: Project[] = [
       `Travail sur les limites de l'ergonomie et les impacts sur l'utilisateur.`,
     ],
     link: {
-      href: '../video.html',
+      href: badUiVideo,
       label: 'Voir la vidéo du projet',
     },
   },

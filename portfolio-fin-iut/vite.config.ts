@@ -8,5 +8,6 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] }),
   ],
-      base: "/portfolio-fin-iut/",
+  assetsInclude: ['**/*.mkv'],
+  base: '/portfolio-fin-iut/',
 })
