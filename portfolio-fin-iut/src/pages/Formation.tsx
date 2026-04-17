@@ -38,7 +38,7 @@ export function Formation() {
         <p className="eyebrow">Parcours académique</p>
         <h1>Formation</h1>
         <p className="intro-text">
-          Mon parcours s\'est construit progressivement autour de l\'informatique et du développement,
+          Mon parcours s'est construit progressivement autour de l'informatique et du développement,
           avec une orientation croissante vers les systèmes interactifs et le jeu vidéo.
         </p>
       </header>
@@ -82,7 +82,7 @@ export function Formation() {
               <li>Gestion de projet</li>
               <li>Git et versioning</li>
               <li>Tests et couverture</li>
-              <li>Architecture d\'applications scalables</li>
+              <li>Architecture d'applications scalables</li>
             </ul>
           </div>
 
@@ -92,7 +92,7 @@ export function Formation() {
               <li>Communication et travail en équipe</li>
               <li>Autonomie et apprentissage continu</li>
               <li>Adaptation à de nouveaux défis</li>
-              <li>Gestion d\'équipe (expérience BDE)</li>
+              <li>Gestion d'équipe (expérience BDE)</li>
             </ul>
           </div>
         </div>
