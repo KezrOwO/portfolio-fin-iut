@@ -1004,6 +1004,25 @@
   line-height: 1.7;
 }
 
+.site-footer {
+  margin-top: auto;
+  padding: 20px 24px 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  background: linear-gradient(180deg, rgba(244, 243, 236, 0.35), transparent);
+}
+
+.site-footer p {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.site-footer p + p {
+  margin-top: 4px;
+}
+
 @media (max-width: 1024px) {
   .contact-page {
     padding: 24px 16px 48px;
@@ -1016,6 +1035,10 @@
 
   .contact-page__hero {
     margin-bottom: 32px;
+  }
+
+  .site-footer {
+    padding: 16px 16px 20px;
   }
 }
 

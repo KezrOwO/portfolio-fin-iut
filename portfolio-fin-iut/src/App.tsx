@@ -8,6 +8,8 @@ import { Projects } from './pages/Projects.tsx'
 import { Contact } from './pages/Contact.tsx'
 
 function App() {
+  const currentYear = new Date().getFullYear()
+
   return (
     <>
       <Navigator />
@@ -19,6 +21,11 @@ function App() {
         <Route path="/projets" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+
+      <footer className="site-footer">
+        <p>© {currentYear} Léo Gengembre</p>
+        <p>Portfolio personnel - Développé avec React et TypeScript</p>
+      </footer>
     </>
   )
 }
